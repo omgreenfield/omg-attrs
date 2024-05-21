@@ -1,3 +1,0 @@
-example_id                | status | run_time        |
-------------------------- | ------ | --------------- |
-./spec/attrs_spec.rb[1:1] | failed | 0.00124 seconds |
