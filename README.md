@@ -1,11 +1,25 @@
-# Attrs
+- [Installation](#installation)
+  - [From RubyGems.org](#from-rubygemsorg)
+    - [Globally](#globally)
+    - [In `Gemfile`](#in-gemfile)
+  - [Locally](#locally)
+- [Usage](#usage)
+- [Running tests](#running-tests)
 
 ## Installation
 
 ### From RubyGems.org
 
+#### Globally
+
 ```sh
 gem i omg-attrs
+```
+
+#### In `Gemfile`
+
+```ruby
+gem 'omg-attrs'
 ```
 
 ### Locally
@@ -15,7 +29,7 @@ gem i omg-attrs
 gem build attrs.gemspec
 
 # Install gem
-gem i -l /path/to/this/folder/omg-attrs-0.1.0.gem
+gem i -l /path/to/this/folder/omg-attrs-<version>.gem
 ```
 
 ## Usage
@@ -33,22 +47,30 @@ dad_hash = {
   wife: { age: 35, hair_color: 'brown' }
 }
 
-dad_hash.attrs(:age) # => 35
-dad_hash.attrs(wife: :age, children: :hair_color) # =>
-# {
-#   wife: 35,
-#   children: [
-#     { hair_color: 'blonde' },
-#     { hair_color: 'brown'  },
-#   ],
-# }
+dad_hash.attrs(:age)
+=> { age: 35 }
+
+dad_hash.attrs(wife: :age, children: [:count, :age])
+=> {
+  wife: {
+    age: 35
+  },
+  children: {
+    count: 2,
+    items: [
+      { age: 7 },
+      { age: 3 },
+    ],
+  },
+}
 ```
 
 ## Running tests
 
-```ruby
+```sh
 rspec
-
 # or
 bundle exec rspec
+# or
+guard
 ```
