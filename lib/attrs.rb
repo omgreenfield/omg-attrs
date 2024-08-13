@@ -9,10 +9,8 @@ module Attrs
 
   module InstanceMethods
     def attrs(*attrs)
-      binding.pry
-      #TODO: handle the existing failing spec
-      return map { |i| i.attrs(*attrs) } if is_list?(self)
-
+      return list_attrs(attrs) if is_list?
+  
       base_attrs, nested_attrs = attrs.partition { |attr| attr.is_a?(Symbol) }
       nested_attrs.map! do |attr|
         if attr.is_a?(Hash)
@@ -25,25 +23,42 @@ module Attrs
           raise ArgumentError, "Invalid attribute: #{attr}"
         end
       end
-
-      base_attrs = base_attrs.to_h { |attr| [attr, get(attr)] }
+  
+      base_attrs = base_attrs.to_h do |attr|
+        [attr, get(attr)]
+      end
       nested_attrs.reduce(base_attrs, :merge)
     end
 
     private
 
+    ##
+    # Returns a hash containing attributes on the list and attributes on individual items.
+    # @param attrs [Array]
+    # @return [Hash]
+    def list_attrs(attrs)
+      list, nested = attrs.partition { |attr| attr.is_a?(Symbol) && respond_to?(attr) }
+      list_attrs = list.empty? ? {} : list.to_h { |key| [key, get(key)] }
+      nested_attrs = nested.empty? ? {} : { items: map { |i| i.attrs(*nested) } }
+
+      list_attrs.merge(nested_attrs)
+    end
+
+    ##
+    # Recursively retrieves nested attributes.
+    #
+    # @param attr [Array | Hash]
     def nested_attrs(attr)
       attr.to_h do |key, value|
-        records = get(key)
-
-        values = is_list?(records) ?
-          records.map { |record| record.attrs(*value) } :
-          records.attrs(*value)
-
-        [key, values]
+        [key, get(key).attrs(*value)]
       end
     end
 
+    ##
+    # Gets a single attribute for any object. If the object is a hash, it will return the value for the key.
+    #
+    # @param key [Symbol]
+    # @return [Object]
     def get(key)
       if respond_to?(key)
         send(key)
@@ -55,8 +70,11 @@ module Attrs
       end
     end
 
-    def is_list?(object)
-      object.is_a?(Enumerable) && !object.is_a?(Hash)
+    ##
+    # Hacky way of determining if a non-hash object is a list but is not
+    #   technically an Array or Enumerable (e.g. ActiveRecord::Relation)
+    def is_list?
+      respond_to?(:each) && !is_a?(Hash)
     end
   end
 end
