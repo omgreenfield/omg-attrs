@@ -4,7 +4,10 @@
     - [In `Gemfile`](#in-gemfile)
   - [Locally](#locally)
 - [Usage](#usage)
-- [Running tests](#running-tests)
+- [Development](#development)
+  - [Installation](#installation-1)
+  - [Console](#console)
+  - [Test](#test)
 
 ## Installation
 
@@ -63,9 +66,27 @@ dad_hash.attrs(wife: :age, children: [:count, :age])
     ],
   },
 }
+
+dad_hash.match?(age: 35 ) # => true
+
+dad_hash.children.find_by(age: 7) # => { age: 7, hair_color: 'blonde' }
 ```
 
-## Running tests
+## Development
+
+### Installation
+
+```sh
+bin/install
+```
+
+### Console
+
+```sh
+bin/console
+```
+
+### Test
 
 ```sh
 rspec

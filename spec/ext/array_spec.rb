@@ -3,8 +3,6 @@ require 'ext/array'
 require 'ext/object'
 
 RSpec.describe Ext::Array, type: :extension do
-  before { Array.include(Ext::Object) }
-
   describe '#where' do
     it 'can handle simple hashes and keys' do
       expect([{ a: 1 }, { a: 2 }].where(a: 1)).to eq([{ a: 1 }])

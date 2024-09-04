@@ -2,8 +2,6 @@ require 'rspec'
 require 'ext/object'
 
 RSpec.describe Ext::Object, type: :extension do
-  before { Hash.include(Ext::Object) }
-
   describe '#match?' do
     it 'can handle simple hashes and keys' do
       expect({ a: 1 }.match?(a: 1)).to be(true)
