@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "attrs"
+require 'attrs'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
 
   # Enable `focus: true` or `fit`
   config.filter_run_when_matching :focus

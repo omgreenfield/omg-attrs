@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = 'omg-attrs'
-  spec.version = '0.1.1'
+  spec.version = '0.1.2'
   spec.authors = ['Matthew Greenfield']
   spec.email = ['mattgreenfield1@gmail.com']
 
@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.files = ['lib/attrs.rb']
+  spec.files = Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
 end

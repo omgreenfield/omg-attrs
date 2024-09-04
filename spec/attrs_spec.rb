@@ -1,4 +1,5 @@
-# frozen_string_literal: true
+require 'spec_helper'
+require 'rspec'
 
 RSpec.describe Attrs do
   let(:dad_hash) do
