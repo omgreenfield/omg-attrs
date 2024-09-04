@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require 'pry'
+
+lib_dir = File.join(File.expand_path(__dir__), '..', 'lib')
+Dir[File.join(lib_dir, '**', '*.rb')].each do |f|
+  puts "Loading file: #{f.sub(lib_dir, '')}"
+  require f
+end
+
+Pry.start
