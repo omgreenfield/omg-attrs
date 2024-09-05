@@ -28,4 +28,4 @@ module Ext
   end
 end
 
-::Object.include Ext::Object
+Object.include Ext::Object

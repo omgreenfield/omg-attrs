@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omg-attrs (0.1.2)
+    omg-attrs (0.1.4)
 
 GEM
   remote: https://rubygems.org/
@@ -55,6 +55,7 @@ GEM
       pry (~> 0.13)
     racc (1.7.3)
     rainbow (3.1.1)
+    rake (13.2.1)
     regexp_parser (2.9.0)
     rexml (3.2.6)
     rspec (3.13.0)
@@ -114,6 +115,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-stack_explorer
+  rake
   rspec (~> 3.0)
   rubocop
   rubocop-rspec

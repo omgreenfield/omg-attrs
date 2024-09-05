@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
-
 module Attrs
   def self.included(base)
     base.include(InstanceMethods)

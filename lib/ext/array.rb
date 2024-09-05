@@ -1,3 +1,5 @@
+require_relative 'object'
+
 module Ext
   module Array
     ##
@@ -18,3 +20,4 @@ module Ext
 end
 
 Array.include Ext::Array
+Array.include Ext::Object

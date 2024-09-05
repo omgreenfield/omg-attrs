@@ -1,3 +1,5 @@
+require_relative 'object'
+
 module Ext
   module Hash
     def method_missing(method_name, *args, &block)
@@ -25,3 +27,4 @@ module Ext
 end
 
 Hash.include Ext::Hash
+Hash.include Ext::Object

@@ -1,0 +1,19 @@
+---
+version: 0.1.4
+name: omg-attrs
+authors:
+- Matthew Greenfield
+email:
+- mattgreenfield1@gmail.com
+summary: Gives objects methods to query nested attributes
+description: |
+  - Adds `Object#attrs` method for querying nested attributes
+  - Adds `Array#where` to return a subset of elements matching a condition
+  - Adds `Array#find_by` to return the first element matching a condition
+  - Adds `Object#match?` to check if an object matches a condition
+  - Adds `Hash#method_missing` to allow {a: 1}.a instead of {a: 1}[:a]
+homepage: https://github.com/omgreenfield/attrs
+license: MIT
+required_ruby_version: ">= 2.7.0"
+homepage_uri: https://github.com/omgreenfield/attrs
+rubygems_mfa_required: 'true'
