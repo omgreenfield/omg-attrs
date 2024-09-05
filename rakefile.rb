@@ -24,7 +24,7 @@ task :build do
 end
 
 desc 'Publishes/pushes gem to RubyGems'
-task :push do
+task push: :build do
   sh "gem push #{config['name']}-#{config['version']}.gem"
 end
 task publish: :push

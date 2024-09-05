@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
 require 'yaml'
 config = YAML.load_file(File.join(__dir__, './config.yml'))
 

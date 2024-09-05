@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'ext/object'
+require_relative 'ext/array'
+require_relative 'ext/hash'
+
 module Attrs
   def self.included(base)
     base.include(InstanceMethods)
