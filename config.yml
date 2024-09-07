@@ -1,5 +1,5 @@
 ---
-version: 0.1.5
+version: 0.1.6
 name: omg-attrs
 authors:
 - Matthew Greenfield
@@ -14,6 +14,6 @@ description: |
   - Adds `Hash#method_missing` to allow {a: 1}.a instead of {a: 1}[:a]
 homepage: https://github.com/omgreenfield/attrs
 license: MIT
-required_ruby_version: '>= 2.7.0'
+required_ruby_version: ">= 2.7.0"
 homepage_uri: https://github.com/omgreenfield/attrs
 rubygems_mfa_required: 'true'

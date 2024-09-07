@@ -31,6 +31,7 @@ module Attrs
       end
       nested_attrs.reduce(base_attrs, :merge)
     end
+    alias_method :oattrs, :attrs
 
     private
 
