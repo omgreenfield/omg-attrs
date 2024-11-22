@@ -3,6 +3,10 @@ module Ext
     ##
     # @return [Boolean] whether all key/value pairs match
     def match?(**args)
+      if defined?(super)
+        return super
+      end
+
       args.all? do |key, value|
         key_value_match?(key, value)
       end

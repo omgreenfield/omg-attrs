@@ -38,7 +38,7 @@ gem i -l /path/to/this/folder/omg-attrs-<version>.gem
 ## Usage
 
 ```ruby
-require 'attrs'
+require 'omg-attrs'
 
 dad_hash = {
   age: 35,

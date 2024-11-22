@@ -12,7 +12,7 @@ module Attrs
   module InstanceMethods
     def attrs(*attrs)
       return list_attrs(attrs) if is_list?
-  
+
       base_attrs, nested_attrs = attrs.partition { |attr| attr.is_a?(Symbol) }
       nested_attrs.map! do |attr|
         if attr.is_a?(Hash)
@@ -25,7 +25,7 @@ module Attrs
           raise ArgumentError, "Invalid attribute: #{attr}"
         end
       end
-  
+
       base_attrs = base_attrs.to_h do |attr|
         [attr, get(attr)]
       end
