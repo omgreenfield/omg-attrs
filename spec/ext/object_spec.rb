@@ -17,5 +17,9 @@ RSpec.describe Ext::Object, type: :extension do
       expect({ a: { b: 1 } }.match?(a: { b: 1 })).to be(true)
       expect({ a: { b: 1 } }.match?(a: { b: 2 })).to be(false)
     end
+
+    it 'does not overwrite existing match? method' do
+      expect('asdf'.match?('a')).to be(true)
+    end
   end
 end
