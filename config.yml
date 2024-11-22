@@ -1,5 +1,5 @@
 ---
-version: 0.1.7
+version: 0.1.8
 name: omg-attrs
 authors:
 - Matthew Greenfield
@@ -10,7 +10,7 @@ description: |
   - Adds `Object#attrs` method for querying nested attributes
   - Adds `Array#where` to return a subset of elements matching a condition
   - Adds `Array#find_by` to return the first element matching a condition
-  - Adds `Object#match?` to check if an object matches a condition
+  - Adds `Object#matches?` to check if an object matches a condition
   - Adds `Hash#method_missing` to allow {a: 1}.a instead of {a: 1}[:a]
 homepage: https://github.com/omgreenfield/attrs
 license: MIT

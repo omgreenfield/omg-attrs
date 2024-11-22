@@ -67,7 +67,7 @@ dad_hash.attrs(wife: :age, children: [:count, :age])
   },
 }
 
-dad_hash.match?(age: 35 ) # => true
+dad_hash.matches?(age: 35) # => true
 
 dad_hash.children.find_by(age: 7) # => { age: 7, hair_color: 'blonde' }
 ```

@@ -8,13 +8,13 @@ module Ext
     # @example
     #   [{ a: 1 }, { b: 2 }].find_by(a: 1) => { a: 1 }
     def find_by(**attrs)
-      find { |item| item.match?(**attrs) }
+      find { |item| item.matches?(**attrs) }
     end
 
     ##
     # @return [Array<Object>] all items that match all key/value pairs
     def where(**attrs)
-      filter { |item| item.match?(**attrs) }
+      filter { |item| item.matches?(**attrs) }
     end
   end
 end

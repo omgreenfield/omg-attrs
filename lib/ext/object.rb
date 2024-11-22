@@ -2,11 +2,7 @@ module Ext
   module Object
     ##
     # @return [Boolean] whether all key/value pairs match
-    def match?(**args)
-      if defined?(super)
-        return super
-      end
-
+    def matches?(**args)
       args.all? do |key, value|
         key_value_match?(key, value)
       end
