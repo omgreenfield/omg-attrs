@@ -29,7 +29,7 @@ gem 'omg-attrs'
 
 ```sh
 # Build gem
-gem build attrs.gemspec
+gem build omg-attrs.gemspec
 
 # Install gem
 gem i -l /path/to/this/folder/omg-attrs-<version>.gem
