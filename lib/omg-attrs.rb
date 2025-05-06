@@ -9,6 +9,20 @@ module Attrs
     base.include(InstanceMethods)
   end
 
+  class << self
+    def included(base)
+      base.include(InstanceMethods)
+    end
+
+    def version
+      config[:version]
+    end
+
+    def config
+      YAML.load_file(File.join(__dir__, '..', 'config.yml'))
+    end
+  end
+
   module InstanceMethods
     def attrs(*attrs)
       return list_attrs(attrs) if is_list?

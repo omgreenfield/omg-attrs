@@ -90,4 +90,11 @@ RSpec.describe Attrs do
       )
     end
   end
+
+  describe '.version' do
+    it 'returns the current version' do
+      config = YAML.load_file(File.join(__dir__, '..', 'config.yml'))
+      expect(Attrs.version).to eq(config[:version])
+    end
+  end
 end

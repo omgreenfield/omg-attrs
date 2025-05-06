@@ -2,7 +2,7 @@ module Ext
   module Object
     ##
     # @return [Boolean] whether all key/value pairs match
-    def matches?(**args)
+    def attrs_match?(**args)
       args.all? do |key, value|
         key_value_match?(key, value)
       end

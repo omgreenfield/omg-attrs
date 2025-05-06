@@ -1,4 +1,7 @@
 require 'yaml'
+require 'bundler/setup'
+
+Bundler.require
 
 def config
   @config ||= YAML.load_file(File.join(__dir__, './config.yml'))
