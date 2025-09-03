@@ -41,35 +41,34 @@ gem i -l /path/to/this/folder/omg-attrs-<version>.gem
 require 'omg-attrs'
 
 dad_hash = {
-  age: 35,
+  age: 36,
   hair_color: 'brown',
   children: [
-    { age: 7, hair_color: 'blonde' },
-    { age: 3, hair_color: 'brown' }
+    { age: 4, hair_color: 'blonde' },
+    { age: 8, hair_color: 'brown' }
   ],
-  wife: { age: 35, hair_color: 'brown' }
+  wife: { age: 37, hair_color: 'brown' }
 }
 
-dad_hash.attrs(:age)
-=> { age: 35 }
+dad_hash.attrs(:age) # => { age: 36 }
 
 dad_hash.attrs(wife: :age, children: [:count, :age])
 => {
   wife: {
-    age: 35
+    age: 36
   },
   children: {
     count: 2,
     items: [
-      { age: 7 },
-      { age: 3 },
+      { age: 8 },
+      { age: 4 },
     ],
   },
 }
 
-dad_hash.matches?(age: 35) # => true
-
-dad_hash.children.find_by(age: 7) # => { age: 7, hair_color: 'blonde' }
+dad_hash.attrs_match?(age: 36, hair_color: 'brown') # => true
+dad_hash.children.find_by(age: 4) # => { age: 4, hair_color: 'brown' }
+dad_hash.children.where(hair_color: 'brown') # => [{ age: 4, hair_color: 'brown' }]
 ```
 
 ## Development
