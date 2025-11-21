@@ -7,7 +7,7 @@ RSpec.describe Attrs do
       age: 35,
       hair_color: 'brown',
       wife: { age: 35, hair_color: 'brown' },
-      children: children,
+      children:,
     }
   end
   let(:children) do
@@ -22,7 +22,7 @@ RSpec.describe Attrs do
       result = dad_hash.attrs(:age, :hair_color)
       expect(result).to eq(
         age: 35,
-        hair_color: 'brown'
+        hair_color: 'brown',
       )
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Attrs do
         age: 35,
         wife: {
           hair_color: 'brown',
-          age: 35
+          age: 35,
         },
       )
     end
@@ -40,53 +40,53 @@ RSpec.describe Attrs do
     it 'retrieves attributes on lists' do
       result = dad_hash.attrs(children: :count)
       expect(result).to eq(
-        children: { count: 2 }
+        children: { count: 2 },
       )
     end
 
     it 'maps arrays to an `item` attribute' do
       result = children.attrs(:age, :hair_color)
       expect(result).to eq(
-        items: [
+        [
           {
             age: 7,
-            hair_color: 'blonde'
+            hair_color: 'blonde',
           },
           {
             age: 3,
-            hair_color: 'brown'
+            hair_color: 'brown',
           },
-        ]
+        ],
       )
     end
-    
-    it 'can handle simple, list, and nested attributes' do
+
+    it 'can handle simple, list, and nested attributes, putting nested attributes into `items`' do
       result = dad_hash.attrs(
         :age,
         :hair_color,
         wife: %i[hair_color age],
-        children: %i[count age hair_color]
+        children: %i[count age hair_color],
       )
       expect(result).to eq(
         age: 35,
         hair_color: 'brown',
         wife: {
           age: 35,
-          hair_color: 'brown'
+          hair_color: 'brown',
         },
         children: {
           count: 2,
           items: [
             {
               age: 7,
-              hair_color: 'blonde'
+              hair_color: 'blonde',
             },
             {
               age: 3,
-              hair_color: 'brown'
+              hair_color: 'brown',
             },
-          ]
-        }
+          ],
+        },
       )
     end
   end

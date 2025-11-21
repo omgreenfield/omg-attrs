@@ -44,7 +44,7 @@ module Attrs
       end
       nested_attrs.reduce(base_attrs, :merge)
     end
-    alias_method :oattrs, :attrs
+    alias oattrs attrs
 
     private
 
@@ -57,7 +57,10 @@ module Attrs
       list_attrs = list.empty? ? {} : list.to_h { |key| [key, get(key)] }
       nested_attrs = nested.empty? ? {} : { items: map { |i| i.attrs(*nested) } }
 
-      list_attrs.merge(nested_attrs)
+      merged_attrs = list_attrs.merge(nested_attrs)
+      merged_attrs = merged_attrs[:items] if merged_attrs.keys == [:items]
+
+      merged_attrs
     end
 
     ##

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omg-attrs (0.1.10)
+    omg-attrs (0.1.11)
 
 GEM
   remote: https://rubygems.org/
