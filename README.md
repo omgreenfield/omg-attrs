@@ -35,6 +35,12 @@ gem build omg-attrs.gemspec
 gem i -l /path/to/this/folder/omg-attrs-<version>.gem
 ```
 
+Or in a `Gemfile`
+
+```ruby
+gem 'omg-attrs', path: '/path/to/this/folder'
+```
+
 ## Usage
 
 ```ruby
