@@ -96,9 +96,7 @@ RSpec.describe Attrs do
           attrs(:secret)
         end
 
-        private
-
-        def secret
+        private def secret
           'shh'
         end
       end
