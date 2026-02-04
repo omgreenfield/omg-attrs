@@ -79,7 +79,7 @@ module Attrs
     # @param key [Symbol]
     # @return [Object]
     def get(key)
-      if respond_to?(key)
+      if respond_to?(key, true)
         send(key)
       elsif is_a?(Hash)
         self[key]

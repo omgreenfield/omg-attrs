@@ -89,6 +89,24 @@ RSpec.describe Attrs do
         },
       )
     end
+
+    it 'can retrieve attributes defined by private methods' do
+      klass = Class.new do
+        def attrs_value
+          attrs(:secret)
+        end
+
+        private
+
+        def secret
+          'shh'
+        end
+      end
+
+      instance = klass.new
+
+      expect(instance.attrs_value).to eq(secret: 'shh')
+    end
   end
 
   describe '.version' do
