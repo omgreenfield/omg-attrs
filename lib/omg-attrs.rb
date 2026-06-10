@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'ext/object'
-require_relative 'ext/array'
+require_relative "ext/object"
+require_relative "ext/array"
 
 module Attrs
-  def self.included(base)
-    base.include(InstanceMethods)
-  end
-
   class << self
     def included(base)
       base.include(InstanceMethods)
@@ -18,7 +14,7 @@ module Attrs
     end
 
     def config
-      YAML.load_file(File.join(__dir__, '..', 'config.yml'))
+      YAML.load_file(File.join(__dir__, "..", "config.yml"))
     end
   end
 
@@ -26,11 +22,11 @@ module Attrs
     def attrs(*attrs)
       return list_attrs(attrs) if is_list?
 
-      base_attrs, nested_attrs = attrs.partition { |attr| attr.is_a?(Symbol) }
+      base_attrs, nested_attrs = attrs.partition(&method(:is_key?))
       nested_attrs.map! do |attr|
         if attr.is_a?(Hash)
           nested_attrs(attr)
-        elsif attr.is_a?(Array) && attr.size == 2 && attr.first.is_a?(Symbol)
+        elsif attr.is_a?(Array) && attr.size == 2 && is_key?(attr)
           nested_attrs([attr].to_h)
         elsif attr.is_a?(Array)
           attr.map { |a| a.attrs(a) }
@@ -53,7 +49,7 @@ module Attrs
     # @param attrs [Array]
     # @return [Hash]
     def list_attrs(attrs)
-      list, nested = attrs.partition { |attr| attr.is_a?(Symbol) && respond_to?(attr) }
+      list, nested = attrs.partition { |attr| is_key?(attr) && respond_to?(attr) }
       list_attrs = list.empty? ? {} : list.to_h { |key| [key, get(key)] }
       nested_attrs = nested.empty? ? {} : { items: map { |i| i.attrs(*nested) } }
 
@@ -89,10 +85,14 @@ module Attrs
       end
     end
 
+    def is_key?(obj) # rubocop:disable Naming/PredicatePrefix
+      obj.is_a?(Symbol) || obj.is_a?(String)
+    end
+
     ##
     # Hacky way of determining if a non-hash object is a list but is not
     #   technically an Array or Enumerable (e.g. ActiveRecord::Relation)
-    def is_list?
+    def is_list? # rubocop:disable Naming/PredicatePrefix
       respond_to?(:each) && !is_a?(Hash)
     end
   end
